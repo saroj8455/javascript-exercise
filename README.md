@@ -19,3 +19,6 @@ Javascript and typescript exercise for developer soluation
 `https://pokeapi.co/api/v2/pokemon/ditto` <br>
 `Need a hint? Try pokemon/ditto, pokemon-species/aegislash, type/3, ability/battle-armor, or pokemon?limit=100000&offset=0.` <br>
 `https://type.fit/api/quotes`<br>
+
+`https://js2ts.com/js-object-to-json` <br>
+`https://codebeautify.org/json-to-json-schema-generator` <br>
