@@ -1,5 +1,5 @@
 // run `node index.js` in the terminal
-import { greetMessage } from './common/common-message.js';
+import { greetMessage, UserObject } from './common/common-message.js';
 import { TimeZone } from './common/global-message.js';
 let hi = {
   name: 'Hi Team',
@@ -18,3 +18,15 @@ emptyCheck([1, 2, 3, 45, 6]);
 
 console.log(greetMessage);
 console.log(TimeZone);
+console.log(UserObject);
+
+function checkEmptyObject(obj) {
+  for (const prop in obj) {
+    if (Object.hasOwn(obj, prop)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(checkEmptyObject(UserObject));
