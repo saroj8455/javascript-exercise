@@ -3,6 +3,7 @@ import { greetMessage, UserObject } from './common/common-message.js';
 import { TimeZone } from './common/global-message.js';
 import connectToDB from './config/connect.js';
 import * as dotenv from 'dotenv';
+import { _isEmptyObject, convertCode, states } from './utils/utils.js';
 
 dotenv.config();
 
@@ -16,18 +17,6 @@ let hi = {
   },
 };
 
-console.log(hi._name);
-
-const emptyCheck = (inputArray) => {
-  console.log(inputArray);
-};
-
-emptyCheck([1, 2, 3, 45, 6]);
-
-console.log(greetMessage);
-console.log(TimeZone);
-console.log(UserObject);
-
 function checkEmptyObject(obj) {
   for (const prop in obj) {
     if (Object.hasOwn(obj, prop)) {
@@ -37,4 +26,10 @@ function checkEmptyObject(obj) {
   return true;
 }
 
-console.log(checkEmptyObject(UserObject));
+// console.log(checkEmptyObject(UserObject));
+const user = { username: 'Jhon Deo' };
+const test = {};
+// console.log(_isEmptyObject(user));
+// console.log(_isEmptyObject({}));
+
+console.log(convertCode(states)); // [ 'Balangir', 'Samblpur', 'Sonepur' ]
