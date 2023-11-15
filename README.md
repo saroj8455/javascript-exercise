@@ -8,6 +8,7 @@ Javascript and typescript exercise for developer soluation
 `date-fns npm install date-fns` <br>
 `express npm install express` <br>
 `uuid npm install uuid` <br>
+`winston npm install uuid` <br>
 
 ## API end points for developer
 
