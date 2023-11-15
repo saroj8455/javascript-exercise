@@ -46,4 +46,4 @@ Thumbs.db
 .env
 
 # Logs File
-./logs/*
+./javascript-node-starter/logs/*
