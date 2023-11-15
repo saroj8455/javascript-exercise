@@ -5,6 +5,9 @@ Javascript and typescript exercise for developer soluation
 ## `npm` module for app
 
 `cors npm install cors` <br>
+`date-fns npm install date-fns` <br>
+`express npm install express` <br>
+`uuid npm install uuid` <br>
 
 ## API end points for developer
 
