@@ -3,7 +3,8 @@ import * as dotenv from 'dotenv';
 import cors from 'cors';
 import { House } from './model/house.model.js';
 import express from 'express';
-import winston, { Logger } from 'winston';
+import winston from 'winston';
+import { StatusCodes } from 'http-status-codes';
 
 dotenv.config();
 
@@ -23,7 +24,7 @@ const logger = winston.createLogger({
   ),
   transports: [
     new winston.transports.Console(),
-    new winston.transports.File({ filename: `logs/${Date.now()}.log` }),
+    new winston.transports.File({ filename: `logs/app.log` }),
   ],
 });
 
@@ -56,7 +57,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', async (req, res, next) => {
   try {
     const houses = await House.find({});
-    res.status(200).jsonp({
+    res.status(StatusCodes.OK).jsonp({
       message: 'OK , API check done',
       houses,
     });
@@ -64,6 +65,16 @@ app.get('/', async (req, res, next) => {
     next(error);
   }
 });
+
+app.get('/mock-error', (req, res, next) => {
+  try {
+    throw new Error('Mock error');
+  } catch (error) {
+    console.log('catch block');
+    next(error);
+  }
+});
+
 // This should be the last route else any after it wont work
 app.use('*', (req, res) => {
   res.status(404).json({
@@ -78,8 +89,10 @@ app.use('*', (req, res) => {
 
 // Error handeler
 const errorHandel = (eror, req, res, next) => {
-  console.log(error);
-  res.status(500).send('Something broke!');
+  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).jsonp({
+    message: 'Something went wrong.',
+    error: eror.message || '',
+  });
 };
 app.use(errorHandel);
 

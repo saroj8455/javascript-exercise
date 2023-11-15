@@ -9,6 +9,7 @@ Javascript and typescript exercise for developer soluation
 `express npm install express` <br>
 `uuid npm install uuid` <br>
 `winston npm install uuid` <br>
+`npm install http-status-codes --save` <br>
 
 ## API end points for developer
 
