@@ -4,7 +4,7 @@ Javascript and typescript exercise for developer soluation
 
 ## `npm` module for app
 
-`cors "\t" npm install cors` <br>
+`cors &emsp;&emsp;&emsp; npm install cors` <br>
 
 ## API end points for developer
 
