@@ -5,6 +5,7 @@ import { House } from './model/house.model.js';
 import express from 'express';
 import winston from 'winston';
 import { StatusCodes } from 'http-status-codes';
+import routerTemplate from './routes/index.js';
 
 dotenv.config();
 
@@ -53,6 +54,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Import all router
+app.use('/api/v1', routerTemplate);
+
 // Define route
 app.get('/', async (req, res, next) => {
   try {
@@ -70,18 +74,17 @@ app.get('/mock-error', (req, res, next) => {
   try {
     throw new Error('Mock error');
   } catch (error) {
-    console.log('catch block');
     next(error);
   }
 });
 
 // This should be the last route else any after it wont work
 app.use('*', (req, res) => {
-  res.status(404).json({
+  res.status(StatusCodes.NOT_FOUND).json({
     success: 'false',
     message: 'Page not found',
     error: {
-      statusCode: 404,
+      statusCode: StatusCodes.NOT_FOUND,
       message: 'You reached a route that is not defined on this server',
     },
   });

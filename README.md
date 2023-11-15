@@ -31,3 +31,7 @@ Javascript and typescript exercise for developer soluation
 
 `https://js2ts.com/js-object-to-json` <br>
 `https://codebeautify.org/json-to-json-schema-generator` <br>
+
+## Mock error api
+
+`http://localhost:3001/mock-error` <br>
