@@ -21,3 +21,10 @@ export function convertCode(inputArrayObject) {
   }
   return stringArray;
 }
+
+export function errorHandeler(error, req, res, next) {
+  console.error(error);
+  return res
+    .status(500)
+    .jsonp({ message: 'Something went wrong, Try after sometime.' });
+}
