@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 import cors from 'cors';
 import { House } from './model/house.model.js';
 import express from 'express';
+import winston, { Logger } from 'winston';
 
 dotenv.config();
 
@@ -11,6 +12,20 @@ connectToDB();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.printf(
+      (info) => ` ${info.timestamp} ${info.level}:${info.message}`
+    )
+  ),
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: `logs/${Date.now()}.log` }),
+  ],
+});
 
 // Cross Origin Resource Sharing
 const whitelist = ['https://www.yoursite.com', 'http://localhost:3500'];
@@ -24,12 +39,18 @@ const corsOptions = {
   },
 };
 
+app.use((req, res, next) => {
+  logger.info(` Received a ${req.method} request for ${req.url}`);
+  next();
+});
+
 // Allow all for devlopment env
-// app.use(cors());
+app.use(cors());
 
 // Allow specific domain for prod env
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Define route
 app.get('/', async (req, res, next) => {
