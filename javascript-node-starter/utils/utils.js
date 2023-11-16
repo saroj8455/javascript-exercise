@@ -22,6 +22,19 @@ export function convertCode(inputArrayObject) {
   return stringArray;
 }
 
+const numbersOfCount = [1, 2, 3];
+const maxNum = Math.max(...numbersOfCount);
+console.log(maxNum); // 3
+
+const geoLocation = {
+  loc: 'INDIA-BLR',
+  getGeo: function () {
+    return this.loc;
+  },
+};
+
+console.log(geoLocation.getGeo()); //INDIA-BLR
+
 export function errorHandeler(error, req, res, next) {
   console.error(error);
   return res

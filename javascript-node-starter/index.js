@@ -1,11 +1,12 @@
 import connectToDB from './config/connect.js';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
-import { House } from './model/house.model.js';
+import { House } from './models/house.model.js';
 import express from 'express';
 import winston from 'winston';
 import { StatusCodes } from 'http-status-codes';
 import routerTemplate from './routes/index.js';
+import todoRouter from './routes/todo.routes.js';
 
 dotenv.config();
 
@@ -56,11 +57,12 @@ app.use(express.urlencoded({ extended: true }));
 
 // Import all router
 app.use('/api/v1', routerTemplate);
+app.use('/todo', todoRouter);
 
 // Define route
 app.get('/', async (req, res, next) => {
   try {
-    const houses = await House.find({});
+    const houses = await House.find({}).limit(2);
     res.status(StatusCodes.OK).jsonp({
       message: 'OK , API check done',
       houses,

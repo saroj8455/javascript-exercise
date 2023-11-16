@@ -38,3 +38,14 @@ async function getHouses() {
 }
 
 getHouses();
+
+todoRouter.get('/', async (req, res, next) => {
+  try {
+    const todos = Todo.find({});
+    res.status(StatusCodes.OK).jsonp({
+      todos,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
