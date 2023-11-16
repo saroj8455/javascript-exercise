@@ -35,3 +35,4 @@ Javascript and typescript exercise for developer soluation
 ## Mock error api
 
 `http://localhost:3001/mock-error` <br>
+`http://localhost:3001/` <br>

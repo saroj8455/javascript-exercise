@@ -6,7 +6,7 @@ import { Todo } from '../models/todo.model.js';
 
 const todoRouter = express.Router();
 
-todoRouter.get('/', TodoController.getTodos);
+todoRouter.get('/:page', TodoController.getTodos);
 todoRouter.post('/', TodoController.createTodo);
 
 export default todoRouter;

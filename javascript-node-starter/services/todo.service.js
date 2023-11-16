@@ -1,8 +1,11 @@
 import { Todo } from '../models/todo.model';
 
-export const findAll = async () => {
+export const findAll = async (perPage, page) => {
+  // console.log(page);
   try {
-    const todos = await Todo.find({});
+    const todos = await Todo.find({})
+      .limit(perPage)
+      .skip(perPage * page);
     return todos;
   } catch (error) {
     return error;
